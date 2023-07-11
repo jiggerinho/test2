@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 function triggerKeyPress() {
   chrome.tabs.query({ url: 'https://nbk.io/*' }, function(tabs) {
     tabs.forEach(function(tab) {
-      chrome.tabs.executeScript(tab.id, { code: 'window.dispatchEvent(new KeyboardEvent("keydown", { key: "k" }));' });
+      chrome.tabs.sendMessage(tab.id, { simulateKey: true });
     });
   });
 }
